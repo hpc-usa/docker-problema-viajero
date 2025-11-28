@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  calculator1:
+    build: .
+    container_name: tsp-calculator-1
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - REPLICA_ID=1
+    networks:
+      - tsp-network
+    restart: unless-stopped
+
+  calculator2:
+    build: .
+    container_name: tsp-calculator-2
+    environment:
+      - FLASK_ENV=production
+      - REPLICA_ID=2
+    networks:
+      - tsp-network
+    restart: unless-stopped
+
+  calculator3:
+    build: .
+    container_name: tsp-calculator-3
+    environment:
+      - FLASK_ENV=production
+      - REPLICA_ID=3
+    networks:
+      - tsp-network
+    restart: unless-stopped
+
+  calculator4:
+    build: .
+    container_name: tsp-calculator-4
+    environment:
+      - FLASK_ENV=production
+      - REPLICA_ID=4
+    networks:
+      - tsp-network
+    restart: unless-stopped
+
+networks:
+  tsp-network:
+    driver: bridge
